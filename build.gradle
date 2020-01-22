@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'io.github.isotes'
-version = '1.0.0'
+version = '1.1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -38,10 +38,10 @@ task downloadTestResources() {
 dependencies {
 	api 'io.github.isotes:vs-model:1.0.0'
 
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
-	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
-	testImplementation 'com.google.truth:truth:1.0'
-	testImplementation 'com.google.truth.extensions:truth-java8-extension:1.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+	testImplementation 'com.google.truth:truth:1.0.1'
+	testImplementation 'com.google.truth.extensions:truth-java8-extension:1.0.1'
 }
 
 test {
