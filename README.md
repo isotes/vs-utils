@@ -1,4 +1,5 @@
-# vs-utils
+# vs-utils  [![License](https://img.shields.io/github/license/isotes/vs-utils)](LICENSE)  [![Build Status](https://travis-ci.com/isotes/vs-utils.svg?branch=master)](https://travis-ci.com/isotes/vs-utils)  [![Javadoc](https://img.shields.io/badge/docs-javadoc-blue)](https://isotes.github.io/javadoc/vs-utils-1.0.0/)  [![Maven Central](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fio%2Fgithub%2Fisotes%2Fvs-utils%2Fmaven-metadata.xml)](https://search.maven.org/search?q=g:io.github.isotes%20a:vs-utils)
+
 Library to work with [MSBuild](https://github.com/microsoft/msbuild) solution and project files based on the Java [model](https://github.com/isotes/vs-model) generated from the official XML Schema files.
 
 
