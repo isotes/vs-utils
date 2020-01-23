@@ -11,9 +11,12 @@ import org.apache.xmlbeans.XmlObject;
 import org.apache.xmlbeans.XmlString;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -148,24 +151,57 @@ public class X {
 		return CONFIGURATION_CONDITION + configuration + "'";
 	}
 
+	// functions to work on XML for parts where the schema is incomplete
 
 	static boolean isStringElement(Node node) {
 		return node.getNodeType() == Node.ELEMENT_NODE && node.getFirstChild() != null && node.getFirstChild().getNodeType() == Node.TEXT_NODE;
 	}
 
-
-	static void set(Node node, String value) {
+	public static void set(Node node, String value) {
 		node.getFirstChild().setNodeValue(value);
 	}
 
-	static String string(Node node) {
+	public static String string(Node node) {
 		return node.getFirstChild().getNodeValue();
 	}
 
-	static void addStringElement(XmlObject parent, String tag, String value) {
-		Element element = parent.getDomNode().getOwnerDocument().createElementNS(parent.getDomNode().getNamespaceURI(), tag);
-		parent.getDomNode().appendChild(element);
+	public static Element addElement(Node parent, String tag, Map<String, String> attributes) {
+		Element element = parent.getOwnerDocument().createElementNS(parent.getNamespaceURI(), tag);
+		for (Map.Entry<String, String> attr : attributes.entrySet()) {
+			element.setAttribute(attr.getKey(), attr.getValue());
+		}
+		parent.appendChild(element);
+		return element;
+	}
+
+	public static Element addElement(Node parent, String tag) {
+		return addElement(parent, tag, Collections.emptyMap());
+	}
+
+	public static Element addStringElement(Node parent, String tag, String value, Map<String, String> attributes) {
+		Element element = addElement(parent, tag, attributes);
 		element.appendChild(element.getOwnerDocument().createTextNode(value));
+		return element;
+	}
+
+	public static Element addStringElement(Node parent, String tag, String value) {
+		return addStringElement(parent, tag, value, Collections.emptyMap());
+	}
+
+	public static Element addStringElement(XmlObject parent, String tag, String value, Map<String, String> attributes) {
+		return addStringElement(parent.getDomNode(), tag, value, attributes);
+	}
+
+	public static Element addStringElement(XmlObject parent, String tag, String value) {
+		return addStringElement(parent, tag, value, Collections.emptyMap());
+	}
+
+	public static NodeList childElements(XmlObject parent, String tag) {
+		return ((Element) parent.getDomNode()).getElementsByTagName(tag);
+	}
+
+	public static NodeList childElements(XmlObject parent) {
+		return childElements(parent, "*");
 	}
 
 
