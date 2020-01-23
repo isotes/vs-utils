@@ -8,6 +8,7 @@ package io.github.isotes.vs.utils;
 import org.apache.xmlbeans.XmlObject;
 
 import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,8 +33,8 @@ public class ListElementWrapper extends AbstractList<String> {
 		X.set(element, list, joinDelimiter);
 	}
 
-	private List<String> load() {
-		return X.list(element, delimiterRegex);
+	private ArrayList<String> load() {
+		return new ArrayList<>(X.list(element, delimiterRegex));
 	}
 
 	@Override
