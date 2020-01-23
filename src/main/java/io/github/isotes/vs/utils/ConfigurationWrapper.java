@@ -5,7 +5,14 @@
 
 package io.github.isotes.vs.utils;
 
-import io.github.isotes.vs.model.*;
+import io.github.isotes.vs.model.ClCompileDocument;
+import io.github.isotes.vs.model.ImportGroupType;
+import io.github.isotes.vs.model.ItemDefinitionGroupType;
+import io.github.isotes.vs.model.LinkItem;
+import io.github.isotes.vs.model.ProjectDocument;
+import io.github.isotes.vs.model.ProjectReferenceDocument;
+import io.github.isotes.vs.model.PropertyGroupType;
+import io.github.isotes.vs.model.SimpleItemType;
 
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -86,7 +93,8 @@ public class ConfigurationWrapper {
 	}
 
 	public boolean isLibrary() {
-		return lib != null;
+		String configurationType = propertyGroup.get("ConfigurationType");
+		return "StaticLibrary".equals(configurationType) || "DynamicLibrary".equals(configurationType);
 	}
 
 }
