@@ -80,7 +80,7 @@ public class ProjectWrapper {
 		}
 		return pcs.get().getItemList().stream()
 				.filter(v -> v instanceof ProjectConfigurationDocument.ProjectConfiguration)
-				.map(v -> new ProjectConfiguration((ProjectConfigurationDocument.ProjectConfiguration) v))
+				.map(v -> new ProjectConfiguration(this, (ProjectConfigurationDocument.ProjectConfiguration) v))
 				.collect(Collectors.toList());
 	}
 

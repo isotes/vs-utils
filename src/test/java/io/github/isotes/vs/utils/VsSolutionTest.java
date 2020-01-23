@@ -49,7 +49,7 @@ class VsSolutionTest {
 		for (VsSolutionProject vsp : solution.projects) {
 			ProjectWrapper project = new ProjectWrapper(vsp.path);
 			for (ProjectConfiguration projectConfiguration : project.configurations()) {
-				ConfigurationWrapper cfg = project.getConfiguration(projectConfiguration.name);
+				ConfigurationWrapper cfg = projectConfiguration.resolve();
 				cfg.propertyGroup.put("PlatformToolset", "v142");
 				X.set(cfg.clCompile.getMultiProcessorCompilationList(), "true");
 				if (X.string(cfg.clCompile.getWarningLevelList()).orElse("").equals("Level4")) {
